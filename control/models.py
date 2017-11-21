@@ -5,10 +5,19 @@ from django.contrib import admin
 class Alumno(models.Model):
     nombre  = models.CharField(max_length=30)
     edad = models.IntegerField()
+    carnet = models.CharField(max_length=30)
 
     def __str__(self):
         return self.nombre
 
+class Profesor (models.Model):
+    nombre =   models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    fecha_contratacion = models.DateTimeField(default=timezone.now)
+    salario = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.nombre
 
 class Materia(models.Model):
     nombre    = models.CharField(max_length=60)
@@ -16,6 +25,16 @@ class Materia(models.Model):
     def __str__(self):
         return self.nombre
 
+class Nota (models.Model):
+    total    = models.CharField(max_length=5)
+    zona    = models.CharField(max_length=4)
+    final    = models.CharField(max_length=4)
+    curso = models.ForeignKey(Curso)
+    alumno = models.ForeignKey(Alumno)
+    encargado = models.ForeignKey(Profesor)
+
+    def __str__(self):
+        return self.total
 
 class Grado(models.Model):
     nombre  = models.CharField(max_length=30)
