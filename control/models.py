@@ -29,7 +29,7 @@ class Nota (models.Model):
     total    = models.CharField(max_length=5)
     zona    = models.CharField(max_length=4)
     final    = models.CharField(max_length=4)
-    curso = models.ForeignKey(Curso)
+    materia = models.ForeignKey(Materia)
     alumno = models.ForeignKey(Alumno)
     encargado = models.ForeignKey(Profesor)
 
